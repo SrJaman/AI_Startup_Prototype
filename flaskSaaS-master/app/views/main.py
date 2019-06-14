@@ -55,3 +55,7 @@ def map_refresh():
 @app.route('/contact')
 def contact():
     return render_template('contact.html', title='Contact')
+
+@app.route('/acercaDe')
+def acercaDe():
+   return render_template('abouth.html', title= 'Acerca De')
