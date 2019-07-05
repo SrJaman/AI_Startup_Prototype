@@ -23,16 +23,19 @@ def upload_file():
    if request.method == 'POST':
       f = request.files['file']
       path = os.path.join(app.config['UPLOAD_FOLDER'], f.filename)
-      model= ResNet50(weights='imagenet')
-      img = image.load_img(path, target_size=(224,224))
-      x = image.img_to_array(img)
-      x = np.expand_dims(x, axis=0)
-      x = preprocess_input(x)
-      preds = model.predict(x)
-      preds_decoded = decode_predictions(preds, top=3)[0] 
-      print(decode_predictions(preds, top=3)[0])
+      #path = app.config['UPLOAD_FOLDER'] + "/" + f.filename
       f.save(path)
-      return render_template('uploaded.html', title='Success', predictions=preds_decoded, user_image=f.filename)
+      # model= ResNet50(weights='imagenet')
+      # img = image.load_img(path, target_size=(224,224))
+      # x = image.img_to_array(img)
+      # x = np.expand_dims(x, axis=0)
+      # x = preprocess_input(x)
+      #  preds = model.predict(x)
+      #  preds_decoded = decode_predictions(preds, top=3)[0] 
+      # print(decode_predictions(preds, top=3)[0])
+      # f.save(path)
+      #return render_template('uploaded.html', title='Success', predictions=preds_decoded, user_image=f.filename)
+      return render_template('uploaded.html', title='Success', user_image=f.filename)
 
 
 @app.route('/index')
